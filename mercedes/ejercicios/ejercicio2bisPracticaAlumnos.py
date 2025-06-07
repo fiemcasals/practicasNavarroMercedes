@@ -101,10 +101,12 @@ def es_palindromo(palabra):
 # ================================
 # PRUEBAS DE CADA FUNCIÓN
 # ================================
-#if __name__ == "__main__":
+#if __name__ == "__main__": 
 if True:
+
     print("Suma de [1, 2, 3, 4]:", suma_lista([1, 2, 3, 4]))  # 10
     print("Cantidad de elementos en [10, 20, 30, 40]:", contar_elementos([10, 20, 30, 40]))  # 4
     print("Invertir [1, 2, 3]:", invertir_lista([1, 2, 3]))  # [3, 2, 1]
     print("¿'reconocer' es palíndromo?:", es_palindromo("reconocer"))  # True
     print("¿'hola' es palíndromo?:", es_palindromo("hola"))  # False
+

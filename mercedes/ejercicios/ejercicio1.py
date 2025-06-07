@@ -1,7 +1,27 @@
+""". Escribir  una  función  que  reciba  como  parámetros  el  inicio  y  fin  (inclusive)  de  un  rango  numérico.  La 
+función debe: 
+a. Imprimir en pantalla todos aquellos números que sean divisibles por 7 pero no sean divisibles 
+por 5.  
+b. Imprimir el mismo resultado anterior, pero separados por coma. 
+ 
+Resultado Esperado: Por ejemplo, si se invoca con los parámetros 1 y 100 (puntos a y b) 
+ 7 
+14 
+21 
+28 
+42 
+49 
+56 
+63 
+77 
+84 
+91 
+98 
+ 
+7,14,21,28,42,49,56,63,77,84,91,98"""
 
 def ingreseNum(mensaje):
     return int(input(mensaje))
-
 
 def saludoMasReglas():
     print("debe ingresar un rango y el programa le dara numeros segun el enunciado")
@@ -20,8 +40,6 @@ def funcionDivSieteNoCinco(num_mayor, num_menor):
         if i % 7 == 0 and i % 5 != 0:
             lista.append(i)
     return lista
-
-
 
 vectorDeNumero = funcionDivSieteNoCinco(num_mayor, num_menor)
 

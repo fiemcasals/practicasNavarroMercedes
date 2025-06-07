@@ -1,7 +1,9 @@
 
 
-conjunto_a = {1, "hola", 3, 4 , 5}
+conjunto_a = {1, "hol","hola", 3, 4 , 5}
 
+conjuntoPalabras = {"a", "b", "aa" , "ab", "ac"}
+print(conjuntoPalabras)
 print(conjunto_a)
 
 conjunto_a.add(6)
@@ -71,6 +73,10 @@ print(conjunto_k)
 conjunto_l = conjunto_i - conjunto_j
 print(conjunto_l)
 
+#diferencia usando el -
+conjunto_ll = conjunto_j - conjunto_i
+print(conjunto_ll)
+
 #diferencia simetrica
 conjunto_m = conjunto_i.symmetric_difference(conjunto_j)
 print(conjunto_m)
@@ -89,8 +95,10 @@ lista_conjunto = list(conjunto_lista)
 print(lista_conjunto)
 
 
-
-
+#sintesis de conjuntos:
+#no guarda valores duplicados
+#los guarda ordenados
+#su sintaxis es con llaves {}
 
 
 
