@@ -1,7 +1,7 @@
 """Escriba una función que reciba como parámetro el radio de un circulo y devuelva una tupla conteniendo 
 en el primer elemento el perímetro y en el segundo el área del mismo.  
  
-TIPs: Recuerde que la fórmula del perímetro es (2 * pi * r) y el área se define como (pi * r^2). Se puede 
+TIPs: Recuerde que la fórmula del perímetro es (2 * math.pi * r) y el área se define como (math.pi * r^2). Se puede 
 utilizar la constante pi definida en el módulo math (import math) 
  
 Resultado Esperado: Si se utiliza la funcion con el valor de r=5, entonces debe devolver la tupla (31.415, 

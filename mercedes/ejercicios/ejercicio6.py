@@ -4,7 +4,7 @@ ingresadas,  almacenadas  en  una  lista,  pero  ordenadas  alfabéticamente  y 
 capitalizada.  
  
 Resultado Esperado: El programa le solicita al usuario que ingrese y este escribe: 
- Ingrese palabra: hola 
+Ingrese palabra: hola 
 Ingrese palabra: QUE 
 Ingrese palabra: tal 
 Ingrese palabra: como 

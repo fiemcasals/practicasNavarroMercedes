@@ -73,7 +73,11 @@ class Buscaminas:
             vecinos = [(i, j) for i in range(fila - 1, fila + 2)
                                for j in range(columna - 1, columna + 2)
                                if (i, j) != (fila, columna) and 0 <= i < self.filas and 0 <= j < self.columnas]
-            random.shuffle(vecinos)
+            #[5,5]-> Base
+            #[(4,4),(4,5),(4,6),(5,4),esta posicion soy yo y no la comtemplo como vecino,(5,6),(6,4),(6,5),(6,6)]
+            #desordeno el orden de mis vecinos
+            #[(4,6),(6,5),(5,4),(6,4),(5,6),(4,5),(6,6),(4,4)]
+            random.shuffle(vecinos) #su funcion es desordenar los elementos de la lista aleatoriamente
             cantidad = random.randint(2, 5) #podemos acortar la cantidad de vecinos a descubrir
             for nf, nc in vecinos[:cantidad]:
                 self.propagacion(nf, nc)
@@ -127,7 +131,7 @@ def jugar():
 
         if juego.juego_terminado():
             juego.mostrar_tablero()
-            print("¡Felicidades! Has descubierto todas las casillas sin pisar todas las minas. 🎉")
+            print("¡Felicidades! Has descubierto todas las casillas sin pisar mas de tres minas. 🎉")
             break
 
 

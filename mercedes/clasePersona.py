@@ -1,7 +1,6 @@
 class Persona: #clase
     def __init__(self, nombre, edad): #metodo
         self.nombre = nombre #atributo
-    
         self.edad = edad #atributo
 
     def saludar(self): #metodo
