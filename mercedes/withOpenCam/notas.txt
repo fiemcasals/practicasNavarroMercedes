@@ -1,0 +1,2 @@
+instale en el virtual enviroment "graficos_venv": pip install opencv-python pytesseract
+sudo apt install tesseract-ocr  # Solo la primera vez, si estás en Linux

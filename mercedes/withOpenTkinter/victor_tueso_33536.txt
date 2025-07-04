@@ -1,0 +1,5 @@
+Nombre: victor
+Apellido: tueso
+Edad: 22
+Email: vistor@gmail.com
+DNI: 33536

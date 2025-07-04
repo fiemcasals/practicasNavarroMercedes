@@ -1,0 +1,91 @@
+Importo "tkinter" para acceder a las funciones de interfaz grafica y lo renombro como "tk"
+De Tkinter importo especificamente "messagebox" para poder 'levantar' cuadros con mensajes
+Importo 'random' para generar numeros aleatorios
+
+defino una clase llamada 'buscaminas'
+    defino el constructor, con parametros como 'master'(ventana principal donde se guarda toda la interfaz grafica de usuario), 'filas' que por defecto tiene que ser 8, 'columnas' que por defecto tiene que ser 8, 'cantidad_minas' por defecto 10, y 'vidas' por defecto 1
+        Se las asigno a atributos de la clase
+        Defino tres atributos mas: botones, tablero,visible, representados por estructuras de datos tipo matriz, la cual debo construir usando dos for anidados. Para la matriz de botones, guardo en todas sus posiciones 'None'. Para tablero, guardo un '0' que representa que todavia no se fijaron si hay o no minas, ni la cantidad de minas adyacentes a dicha posicion, y para el visible, lo cargamos con #. que identifica que dicho casillero del tablero todavia no fue descubierto para el usuario
+        Declaro un conjunto llamado minas. Para cargarles las posiciones x e y del tablero y evitar duplicados.
+        Seteo como atributo a 3 funciones. Para disparar al mismo tiempo que el constructor de la clase, dichas funciones. Estas tienen que ser 'generar_minas' al cual no se le pasa ningun atributo, 'calcular_numeros' que tampoco se le pasan atributos, y 'crear_tablero' que tampoco se le pasan atributos
+
+        
+    defino la funcion generar_minas
+        Creo una estructura de repeticion que termine cuando se cumpla la condicion de que la cantidad de minas que tiene el atributo de la clase llamado 'minas' sea menor que el atributo de la clase 'cantidad_minas' que define el usuario para registrar la cantidad de minas que quiere el usuario para jugar.
+        Genero una variable 'f' donde guardo la posicion de la fila donde se podria guardar una mina, dicho valor va a ser generado por la funcion random entre todas las filas disponibles.
+        De igual modo para 'c' que representa la posicion de la columna
+        Agrego a el conjunto 'minas' 'f' y 'c' como una tupla, (recuerden que append es para listas no conjuntos)
+        
+        Generan una estructura de repeticion que tome los valores de 'minas' los cargue en dos indices 'f' y 'c' y utilice la matriz 'tablero' para cargar en todos los indices un '*' representando que hay una mina en dichas posiciones
+        
+    Defino una funcion 'calcular_numeros'
+        Gereno una estructura de repeticion usando dos for anidados que tengan como valores de repeticion a 'filas' y 'columnas' y que al final del segundo for, evalue si en la posicion 'f' y 'c' existe un '*'. de ser asi contunia, ya que lo que busca es cargarle a cada posicion del tablero distinto a '*' el valor que representa la cantidad de minas que tiene en su adyacentes.
+        Declaro una variable que me permita ir contando la cantidad de minas adyacentes, ej: 'minas_cerca' y la inicializo en 0
+        Genero dos for anidados, para las filas y las columnas que recorran 3 posiciones tanto logintudinalmente, como verticalmente, partiendo de la posicino 'f' y 'c' de los for anidados anteriores. para evaluar el perimetro de la posicion actual del tablero.
+            Evaluo por medio de un condiciona si la posicion adyacente a visitar esta dentro del tablero tanto en filas como en columnas
+                si en dicha posicion hay una mina aumento en uno la cantidad de minas cerca ('minas_cerca')
+        Una vez que tengo la cantidad de minas aledanias, cargo dicho numero 'minas_cerca' en la posicion central de dicho perimetro. es decir la posicion que estoy evaluando.
+     
+               
+                       
+                          
+            
+    defino una nueva funcion 'crear_tablero' sin atributos adicionales
+        Gereno dos for anidados
+            En cada posicion de la matriz generada por los dos for anidados, genero un objeto boton, pasandole como atributos el lugar donde quiero que sea generado dicho objeto, en este caso en 'master' que seria la ventana grafica, el ancho de dicho boton y la altura. Ademas fijo una funcion lambda que declara en la misma linea la asignacion dinamica de la fila y la columna, para posteriormente llamar al metodo propio del boton 'click' pasandole como atributos la fila y columna de dicho boton. Por medio de la siguiente linea:
+                b = tk.Button(self.master, width=3, height=1,
+                              command=lambda fila=f, col=c: self.click(fila, col))
+                Ubico el objeto b, por medio del metodo grid en la fila y columna actual fijado por mis for anidados, de la siguiente manera:
+                b.grid(row=f, column=c)
+
+                Le cargo a la matriz botones, que era una matriz seteada como atributo de la clase, generada con todos None, en la posicion actual de f y c, el objeto boton(b)
+                
+    Defino la funcion(metodo) click citada en la funcion lambda, con sus atributos correspondientes.
+        Declaro un condicional que evalua la matriz visible, para ver si una posicion esta descubierta o no. es decir evalua si es o no '#' en dicha posicion. Si se cumple dicha condicion sale de la funcion
+        
+        Declaro otro condicional para evaluar si tablero, en la fila y columa que se pasan en la funcion, tiene una mina. De ser True, cambia en el tablero de botones que es lo que se muestra en este buscaminas con tkinter, el boton de dicha posicion, cambiando el texto y el color del mismo. Como muestra la siguiente linea:
+                  
+            self.botones[fila][columna].config(text='💣', bg='red')
+            
+            Ademas en 'visible', persiste en dicha posicion '*', es decir registra en el tablero visible que hay una mina. Recuerden que el tablero visible, ya no se muestra como se hacia antes, pero si es una herramienta (logica) para saber si el tablero de minas debe mostrar un valor u otro.
+            
+            Le reto una vida, siendo que el casillero elegido tenia una mina
+            Evaluo si vidas llego a 0. Si es True llamo a el metodo 'revelar_todo'. Y muestro con un mensaje, que perdio, de la siguiente manera:
+                    messagebox.showinfo("Perdiste", "¡Pisaste una mina y te quedaste sin vidas! 😵")
+                Una vez que ya aviso que perdiste, cierra todo la ventana por medio del siguiente comando:
+                self.master.quit()
+            Continuo el if anterior, para el caso de que haya sido False, sin agregar una nueva condicion a evaluar.
+            Dentro de este nuevo bloque de instruccion muestro otro anuncio siguiendo la misma sintaxis anterior pero esta vez muestro el siguiente mensaje ¡Cuidado! Pisaste una mina 💣. Te queda(n) {self.vidas} vida(s)." y salgo de la funcion
+            
+        Llamo a la funcion 'propagacion' y le paso la fila y columna actual. La idea de esto es que evalue si puede mostrar celdas adyacentes.
+        
+        Evaluo con un condicional si el juego a terminado por medio de la funcion juego_terminado. De ser True llamo a la funcion de revelar_todo y muestro un mensaje con tkinter que diga "¡Ganaste!", "¡Descubriste todas las casillas sin perder! 🎉" y cierro la ventana de tkinter como hiciste anteriormente.
+
+    Defino a la funcion propagacion, que tiene como parametros los propios de la clase, la fila y la columna.
+        Evaluo si la fila y la columna esta dentro de la matriz. Si no lo esta salgo de la funcion
+        Si esta dentro de la matriz evaluo si ya fue descubierto anteriormente en mi 'visible' verificando que sea #. si es distinto, entiendo que ya fue descubierto y salgo.
+        Si no fue descubierto, persisto el dato de la fila y columna correspondiente de tablero donde tengo la informacion a visible.
+        Tambien en la matriz de botones, en la fila y columna correspondiente cambio el texto por la informacion guardada en 'tablero' en dicha fila y columa. Despues de haber cambiado el texto, como en pasos anteriores, se le agrega un atributo mas, separado por una coma, como es de costumbre, dentro del metodo config(", relief=tk.SUNKEN"). Esto lo que hace que el botón parezca "hundido" o presionado hacia adentro, como si estuviera apretado. 
+       
+        Evaluo si en 'tablero' en la fila y columa el dato guardado es igual a 0, lo que significa que no tiene minas en los casilleros adyacentes. Si eso es verdadero, dentro de una variable llamada 'vecinos' guarda por medio de dos for anidados, la tupla conformada por i y j que refieren a la fila y columna, del vecino corresponidente, siempre y cuando se cumplan dos condiciones mas, la primera que i y j no sean justamente la fila y columna (posicion central), y a la vez que i y j esten dentro del tablero.
+        Una vez que esta constituida la variable 'vecinos' con todas las tuplas que representan todas las posiciones, se mezclan dentro de la misma variable, usando random.shuffle()(recuerde que dicho metodo trabaja sobre el atributo y no devuelve nada, es decir no hace falta asignarle una variable para que persista su resultado)
+        Se crea un nuevo for que obtiene a i y j de vecinos, conciderando solamente las tuplas que van desde la posicion 0 hasta un numero aleatorio generado entre el 2 y el 5 por un metodo de random. Una vez que se obtienen dichas tuplas, se llama a la funcion de propagacion y se les da la tupla como parametros.
+            
+    Defino una funcion 'juego_terminado', que recorre toda la matriz y evalua si existe en 'visible', un '#' y que la misma posicion en 'tablero' es distinto a '*'. si se da esa condicion devuelve False. y si al terminar nunca se dio dicha condicion, devuelve True en senial de que el juego ha terminado 
+    
+    defino una funcion 'revelar_todo' que recorra toda la matriz, evaluando si 'tablero' es todas las posiciones son iguales a '*', de ser asi, setean a 'botones' mediante:
+                    self.botones[f][c].config(text='💣', bg='red')
+                y si no, mediante:
+                    self.botones[f][c].config(text=self.tablero[f][c])
+
+defino la funcion principal:
+    defino una ventana principal llamada 'roor' por medio de tkinter mediante:
+    root = tk.Tk()
+    Le asigno un titulo a dicha ventana, por medio de:
+    root.title("Buscaminas - Tkinter Edition")
+    Genero un objeto llamado 'app', por medio del constructor de la clase 'Buscaminas', pasando como parametros, la ventana principal definida anteriormente, la cantidad de filas, la cantidad de columnas, cantidad de minas y la cantidad de minas. Pudiendo o no ser de manera dinamica por medio de input ingresados por el usuario
+    Llamo a un loop sobre la ventana principal, para que se ejecute infinitamente hasta su cierre mediante:
+    root.mainloop()
+
+Genero un condicion que evalue que dicho programa se esta ejecutando desde el mismo script, y no de manera importada, y de cumplirse dicho condicional llamo a la funcion main
+

@@ -1,0 +1,5 @@
+Nombre: mauri
+Apellido: casal
+Edad: 34
+Email: mauri@g.com
+DNI: 33352352

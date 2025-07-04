@@ -1,0 +1,5 @@
+Nombre: nico
+Apellido: bazan
+Edad: bazan@gmail.com
+Email: 34
+DNI: 34555

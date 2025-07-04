@@ -31,17 +31,17 @@ def determina_ganador(opcion_usuario, opcion_maquina):
     return "perdiste una ronda"
     
    
-#mejor de 3
+def main():
+
+    while cant_ganada != 2 and cant_ganada_maq !=2:
+        opcion_usuario, opcion_maquina = elegir_opciones()
+        print(determina_ganador(opcion_usuario,opcion_maquina))
+
+    if cant_ganada_maq == 2:
+        print("perdiste el juego")
+    else:
+        print("ganaste el juego")
 
 
-while cant_ganada != 2 and cant_ganada_maq !=2:
-     opcion_usuario, opcion_maquina = elegir_opciones()
-     print(determina_ganador(opcion_usuario,opcion_maquina))
-
-if cant_ganada_maq == 2:
-    print("perdiste el juego")
-else:
-    print("ganaste el juego")
-
-
-
+if __name__ == "__main__":
+    main()
