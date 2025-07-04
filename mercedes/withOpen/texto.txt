@@ -1,0 +1,2 @@
+hola, este es mi archivo de prueba llamado texto.txt
+Como vieron el salto de linea es igual que cuando uso printesto es otra linea
